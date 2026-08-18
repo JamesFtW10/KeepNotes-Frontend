@@ -7,7 +7,7 @@ import {
   Component,
   LogOut,
 } from "lucide-react";
-import profilePicture from "../../../assets/ProfilePicture.jpg";
+// import profilePicture from "../../../assets/ProfilePicture.jpg";
 import LogoKeep from "../../../assets/LogoKeep.png";
 import { clearTokens } from "../../auth/auth";
 import { useNavigate } from "react-router-dom";
@@ -61,11 +61,11 @@ function Header() {
           >
             <LogOut className="h-5 w-5" />
           </button>
-          <img
+          {/* <img
             src={profilePicture}
             className="h-10 w-10 cursor-pointer rounded-full border-2 border-gray-200"
             alt="Profile Picture"
-          />
+          /> */}
         </div>
       </header>
     </>
