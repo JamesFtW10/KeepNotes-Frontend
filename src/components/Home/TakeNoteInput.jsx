@@ -101,7 +101,7 @@ export function TakeNoteInput() {
   const handleSubmit = async (event) => {
     if (event) event.preventDefault();
     try {
-      const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/api/post`, {
+      const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/api/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +160,7 @@ export function TakeNoteInput() {
 
       <div className="mx-auto w-full max-w-[620px]">
         <h3 className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3 px-1">Ang imohang mga nota:</h3>
-        <AddNotesContainer refreshTrigger={refreshTrigger} />
+        <AddNotesContainer refreshTrigger={refreshTrigger} notes={note} />
       </div>
 
     </div>

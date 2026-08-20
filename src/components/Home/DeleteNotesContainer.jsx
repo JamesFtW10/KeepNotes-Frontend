@@ -1,4 +1,5 @@
 import { fetchWithAuth } from "../../shared/auth/auth";
+import { Trash2 } from 'lucide-react';
 
 function DeleteNotesContainer({ noteId, onDeleted }) {
   const handleDelete = async () => {
@@ -6,9 +7,9 @@ function DeleteNotesContainer({ noteId, onDeleted }) {
 
     try {
       const response = await fetchWithAuth(
-        `${import.meta.env.VITE_API_URL}/api/notes/${noteId}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/${noteId}/temporary-delete`,
         {
-          method: "DELETE",
+          method: "PATCH",
         },
       );
 
@@ -29,9 +30,9 @@ function DeleteNotesContainer({ noteId, onDeleted }) {
     <button
       type="button"
       onClick={handleDelete}
-      className="rounded-md border border-gray-200 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100"
+      className="cursor-pointer rounded-md border border-gray-200 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100"
     >
-      Delete
+      <Trash2 />
     </button>
   );
 }

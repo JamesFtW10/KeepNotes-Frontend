@@ -2,20 +2,35 @@ import { useEffect, useState } from "react";
 import { fetchWithAuth, clearTokens } from "../../shared/auth/auth";
 import { useNavigate } from "react-router-dom";
 import DeleteNotesContainer from "./DeleteNotesContainer";
+import {ArchiveNotesContainer} from "./ArchiveNotes";
+import { handleDeleted, handleArchived } from "./handleFunction";
+import { handleSave } from "./PatchNotes";
+import { SquarePen } from 'lucide-react';
 
-export function AddNotesContainer({ refreshTrigger = 0 }) {
+export function AddNotesContainer({ refreshTrigger = 0}) {
   const [notes, setNotes] = useState([]);
-  const [editingId, setEditingId] = useState(null);
   const [draftTitle, setDraftTitle] = useState("");
   const [draftContent, setDraftContent] = useState("");
+  const [editingId, setEditingId] = useState(null);
   const navigate = useNavigate();
 
+
+
+  const handleEdit = (note) => {
+    setEditingId(note.id);
+    setDraftTitle(note.title || "");
+    setDraftContent(note.content || "");
+  };
+
+  
   useEffect(() => {
     let isMounted = true;
 
     (async () => {
       try {
-        const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/api/add`);
+        const response = await fetchWithAuth(
+          `${import.meta.env.VITE_API_URL}/api/notes`,
+        );
         if (!response.ok) {
           if (response.status === 401) {
             clearTokens();
@@ -45,60 +60,6 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
     };
   }, [refreshTrigger, navigate]);
 
-  const handleEdit = (note) => {
-    setEditingId(note.id);
-    setDraftTitle(note.title || "");
-    setDraftContent(note.content || "");
-  };
-
-  const handleSave = async (noteId) => {
-    try {
-      const response = await fetchWithAuth(
-        `${import.meta.env.VITE_API_URL}/api/notes/${noteId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: draftTitle,
-            content: draftContent,
-          }),
-        },
-      );
-
-      const jsonData = await response.json();
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          clearTokens();
-          navigate("/signIn", { replace: true });
-          return;
-        }
-        throw new Error(jsonData?.message || "Failed to update note");
-      }
-
-      setNotes((currentNotes) =>
-        currentNotes.map((note) =>
-          note.id === noteId
-            ? { ...note, title: draftTitle, content: draftContent }
-            : note,
-        ),
-      );
-      setEditingId(null);
-      setDraftTitle("");
-      setDraftContent("");
-    } catch (error) {
-      console.error("Error updating note:", error);
-    }
-  };
-
-  const handleDeleted = (deletedNoteId) => {
-    setNotes((currentNotes) =>
-      currentNotes.filter((note) => note.id !== deletedNoteId),
-    );
-  };
-
   return (
     <div className="p-4 flex flex-col gap-4">
       {notes.length > 0 ? (
@@ -107,7 +68,6 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
           return (
             <div
               key={note.id || index}
-              // onClick={() => handleEdit(note)}
               className="p-4 rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 min-h-40"
             >
               {isEditing ? (
@@ -127,7 +87,18 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
                   <div className="mt-3 flex gap-2">
                     <button
                       type="button"
-                      onClick={() => handleSave(note.id)}
+                      onClick={() =>
+                        handleSave({
+                          noteId: note.id,
+                          draftTitle,
+                          draftContent,
+                          setNotes,
+                          setEditingId,
+                          setDraftTitle,
+                          setDraftContent,
+                          navigate,
+                        })
+                      }
                       className="rounded-md bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:bg-blue-600"
                     >
                       Save
@@ -148,18 +119,28 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
                       {note.title}
                     </h2>
 
+
                     <div className="flex gap-2">
+                      <ArchiveNotesContainer
+                        noteId={note.id}
+                        onArchive={(archivedNoteId) =>
+                          handleArchived(setNotes, archivedNoteId)
+                        }
+                      />
+
                       <DeleteNotesContainer
                         noteId={note.id}
-                        onDeleted={handleDeleted}
+                        onDeleted={(deletedNoteId) =>
+                          handleDeleted(setNotes, deletedNoteId)
+                        }
                       />
 
                       <button
                         type="button"
                         onClick={() => handleEdit(note)}
-                        className="rounded-md border border-gray-200 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100"
+                        className="cursor-pointer rounded-md border border-gray-200 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100"
                       >
-                        Edit
+                        <SquarePen />
                       </button>
                     </div>
                   </div>
