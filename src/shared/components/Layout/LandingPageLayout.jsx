@@ -11,7 +11,7 @@ import {
 	ShieldCheck,
 	Star,
 } from "lucide-react";
-import LogoKeep from "../../../assets/LogoKeep.png";
+import NoteKeep from "../../../assets/note-Logo.png";
 
 const highlights = [
 	"Quick note capture",
@@ -50,9 +50,9 @@ function LandingPageLayout() {
 			<div className="absolute -right-24 top-20 h-80 w-80 rounded-full bg-teal-300/20 blur-3xl" />
 
 			<div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-5 sm:px-6 lg:px-8">
-				<header className="flex items-center justify-between rounded-full border border-white/70 bg-white/70 px-4 py-3 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur">
+				<header className="flex items-center justify-between rounded-full border border-white/70 bg-white/70 px-4 py-1 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur">
 					<div className="flex items-center gap-3">
-						<img src={LogoKeep} alt="Keep logo" className="h-10 w-10 rounded-2xl object-cover" />
+						<img src={NoteKeep} alt="Keep logo" className="h-14 w-14 rounded-2xl object-cover" />
 						<div>
 							<p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-700">Keep Notes</p>
 							<p className="text-sm text-slate-500">A calmer place for your ideas</p>

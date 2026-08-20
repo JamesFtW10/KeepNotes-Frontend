@@ -8,7 +8,7 @@ import {
   LogOut,
 } from "lucide-react";
 // import profilePicture from "../../../assets/ProfilePicture.jpg";
-import LogoKeep from "../../../assets/LogoKeep.png";
+import noteLogo from "../../../assets/note-logo.png";
 import { clearTokens } from "../../auth/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -31,9 +31,9 @@ function Header() {
         {/* Left: Menu & Logo */}
         <div className="flex min-w-fit items-center gap-4">
           <Menu className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
-          <div className="flex items-center gap-3">
-            <img src={LogoKeep} alt="Logo" className="w-8 h-8 cursor-pointer" />
-            <h1 className="text-2xl font-semibold text-gray-800 cursor-pointer">Keep</h1>
+          <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
+            <img src={noteLogo} alt="Logo" className="w-18 h-18 cursor-pointer" />
+            <h1 className="font-poppins text-2xl  text-gray-800 cursor-pointer ml-[-18px]">ota</h1>
           </div>
         </div>
 
@@ -53,6 +53,7 @@ function Header() {
           <Table className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
           <Settings className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
           <Component className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
+       
           <button
             type="button"
             onClick={handleLogout}
