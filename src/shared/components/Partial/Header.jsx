@@ -8,7 +8,7 @@ import {
   LogOut,
 } from "lucide-react";
 // import profilePicture from "../../../assets/ProfilePicture.jpg";
-import noteLogo from "../../../assets/note-Logo.png";
+import noteLogo from "../../../assets/noteLogo.png";
 import { clearTokens } from "../../auth/auth";
 import { useNavigate } from "react-router-dom";
 

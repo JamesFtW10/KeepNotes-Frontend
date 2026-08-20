@@ -11,7 +11,7 @@ import {
 	ShieldCheck,
 	Star,
 } from "lucide-react";
-import NoteKeep from "../../../assets/note-Logo.png";
+import NoteKeep from "../../../assets/noteLogo.png";
 
 const highlights = [
 	"Quick note capture",
