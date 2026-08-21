@@ -10,7 +10,7 @@ import { fetchWithAuth } from "../../shared/auth/auth";
 // ==========================================
 // 1. CHILD COMPONENT: NoteFields
 // ==========================================
-function NoteFields({ title, setTitle, note, setNote, isExpanded, setIsFocused, onSubmit }) {
+function NoteFields({ title, setTitle, note, setNote, isExpanded, setIsFocused, onSubmit }) { 
  
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {

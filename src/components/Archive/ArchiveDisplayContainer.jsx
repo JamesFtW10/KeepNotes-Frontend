@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { fetchWithAuth, clearTokens } from "../../shared/auth/auth";
+import { fetchWithAuth } from "../../shared/auth/auth";
+import { useEffect, React, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSave } from "../EditLabels/PatchNotes";
-import { editCard, containerCard } from "./HomeCard";
+import { ArchiveRestore } from "lucide-react";
 
-export function AddNotesContainer({ refreshTrigger = 0 }) {
+export function ArchiveDisplayContainer() {
   const [notes, setNotes] = useState([]);
-  const [draftTitle, setDraftTitle] = useState("");
-  const [draftContent, setDraftContent] = useState("");
-  const [editingId, setEditingId] = useState(null);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     let isMounted = true;
@@ -17,7 +16,7 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
     (async () => {
       try {
         const response = await fetchWithAuth(
-          `${import.meta.env.VITE_API_URL}/api/notes/home`,
+          `${import.meta.env.VITE_API_URL}/api/notes/archived`,
         );
         if (!response.ok) {
           if (response.status === 401) {
@@ -39,40 +38,44 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
           setNotes(jsonData.data.slice().reverse());
         }
       } catch (error) {
-        console.error("Error fetching notes data:", error);
+        console.error("Error fetching archive data:", error);
       }
     })();
 
     return () => {
       isMounted = false;
     };
-  }, [refreshTrigger, navigate]);
+  }, []);
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4" >
       {notes.length > 0 ? (
         notes.map((note, index) => {
-          const isEditing = editingId === note.id;
           return (
             <div
               key={note.id || index}
               className="p-4 rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 min-h-40"
             >
-              {isEditing ? (
-                editCard(note, draftTitle, draftContent, setDraftTitle, setDraftContent, setNotes, setEditingId, navigate)
-              ) : (
-                containerCard(note, setEditingId, setDraftTitle, setDraftContent, setNotes)
-              )}
+              <div className="flex items-start justify-between gap-3">
+                <h2 className="text-lg font-bold text-gray-800">
+                  {note.title}
+                </h2>
+              </div>
+              <p className="mt-2 text-gray-600 whitespace-pre-wrap">
+                {note.content}
+              </p>
             </div>
           );
         })
       ) : (
-        <p className="text-gray-400 text-sm text-center py-4">
-          Walang nakitang nota.
-        </p>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <ArchiveRestore className="mt-[-240px] h-40 w-40 text-yellow-600 mb-[20px]" />
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4">Archive</h1>
+            <p className="text-lg text-gray-600">This is the Archive page.</p>
+          </div>
+        </div>
       )}
     </div>
   );
 }
-
-export default AddNotesContainer;
