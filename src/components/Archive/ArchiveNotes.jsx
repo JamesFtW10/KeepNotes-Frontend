@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchWithAuth, clearTokens } from "../../shared/auth/auth"; 
+import { fetchWithAuth } from "../../shared/auth/auth";
 import { ArchiveRestore } from 'lucide-react';
 
 export function ArchiveNotesContainer({ noteId, onArchive }) {

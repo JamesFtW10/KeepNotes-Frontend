@@ -91,11 +91,10 @@ function BottomActionBar({ onCancel, onSubmit }) {
 // ==========================================
 // 3. PARENT COMPONENT: Main Container
 // ==========================================
-export function TakeNoteInput() {
+export function TakeNoteInput({setRefreshTrigger}) {
   const [note, setNote] = useState("");
   const [title, setTitle] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const isExpanded = isFocused || note.length > 0;
 
   const handleSubmit = async (event) => {
@@ -157,12 +156,6 @@ export function TakeNoteInput() {
 
         </div>
       </div>
-
-      <div className="mx-auto w-full max-w-[620px]">
-        <h3 className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3 px-1">Ang imohang mga nota:</h3>
-        <AddNotesContainer refreshTrigger={refreshTrigger} notes={note} />
-      </div>
-
     </div>
   );
 }

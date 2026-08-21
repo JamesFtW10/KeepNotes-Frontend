@@ -54,7 +54,7 @@ function LandingPageLayout() {
 					<div className="flex items-center gap-3">
 						<img src={NoteKeep} alt="Keep logo" className="h-14 w-14 rounded-2xl object-cover" />
 						<div>
-							<p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-700">Keep Notes</p>
+							<p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-700"> Nota</p>
 							<p className="text-sm text-slate-500">A calmer place for your ideas</p>
 						</div>
 					</div>

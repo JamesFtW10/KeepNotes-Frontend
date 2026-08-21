@@ -1,4 +1,4 @@
-import { fetchWithAuth } from "../../shared/auth/auth";
+import { fetchWithAuth } from '../../shared/auth/auth';
 import { Trash2 } from 'lucide-react';
 
 function DeleteNotesContainer({ noteId, onDeleted }) {
