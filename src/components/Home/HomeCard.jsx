@@ -1,6 +1,7 @@
 import DeleteNotesContainer from "../Trash/DeleteNotesContainer";
 import { ArchiveNotesContainer } from "../Archive/ArchiveNotes";
 import { handleDeleted, handleArchived, EditButton } from "./handleFunction";
+import { handleSave} from "../EditLabels/PatchNotes";
 
 export function editCard(note, draftTitle, draftContent, setDraftTitle, setDraftContent, setNotes, setEditingId, navigate) {
   return (
