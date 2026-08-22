@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";
 import { PermanentDelete } from "./PermanentDelete";
 import { handleDeleted } from "../../components/Home/handleFunction";
+import { clearTokens } from "../../shared/auth/auth";
+import { RestoredNotesCard } from "./RestoredNotesCard";
 
 function DeleteDisplayContainer() {
   const [notes, setNotes] = useState([]);
@@ -64,6 +66,14 @@ function DeleteDisplayContainer() {
                   {note.title}
                 </h2>
                 <div className="flex gap-2">
+                  <RestoredNotesCard
+                    note={note}
+                    onRestore={(restoredNote) =>
+                      setNotes((prevNotes) =>
+                        prevNotes.filter((n) => n.id !== restoredNote.id)
+                      )
+                    }
+                  />
                   <PermanentDelete
                     noteId={note.id}
                     onDeleted={(deletedNoteId) =>
