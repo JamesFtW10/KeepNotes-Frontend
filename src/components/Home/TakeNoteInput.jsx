@@ -28,13 +28,13 @@ function NoteFields({ title, setTitle, note, setNote, isExpanded, setIsFocused, 
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="font-bold w-full resize-none rounded-lg bg-transparent px-4 py-3 pr-36 text-[15px] text-gray-800 outline-none placeholder:text-gray-500"
+          className="w-full rounded-lg bg-transparent px-4 py-3 text-[15px] font-bold text-gray-800 outline-none placeholder:text-gray-500 sm:pr-36"
         />
       )}
       <textarea
         rows={1}
         placeholder="Take a note..."
-        className="w-full resize-none rounded-lg bg-transparent px-4 py-3 pr-36 text-[15px] text-gray-800 outline-none placeholder:text-gray-500"
+        className="w-full resize-none rounded-lg bg-transparent px-4 py-3 text-[15px] text-gray-800 outline-none placeholder:text-gray-500 sm:pr-36"
         value={note}
         onChange={(e) => setNote(e.target.value)}
         onFocus={() => setIsFocused(true)}
@@ -55,31 +55,31 @@ function BottomActionBar({ onCancel, onSubmit }) {
   ];
 
   return (
-    <div className="flex flex-row justify-between border-t border-gray-100">
-      <div className="border-t border-gray-100 px-4 py-2 text-[5px] text-gray-400">
+    <div className="flex flex-col gap-2 border-t border-gray-100 px-3 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-4">
+      <div className="flex flex-wrap items-center gap-1 text-[5px] text-gray-400">
         {divBottomIcon.map((icon, index) => (
           <button
             key={index}
             type="button"
-            className="rounded-full p-2 cursor-pointer text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus:outline-none"
+            className="cursor-pointer rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus:outline-none"
           >
             {icon}
           </button>
         ))}
       </div>
       
-      <div className="flex border-t border-gray-100 px-4 py-2 text-[5px] text-gray-400">
+      <div className="flex flex-col gap-2 text-[5px] text-gray-400 sm:flex-row">
         <button
           onClick={onSubmit}
           type="button"
-          className="cursor-pointer ml-2 px-2 py-2 text-[14px] font-medium hover:bg-gray-300 hover:text-gray-600 border border-gray-300 rounded-md"
+          className="cursor-pointer rounded-md border border-gray-300 px-4 py-2 text-[14px] font-medium hover:bg-gray-300 hover:text-gray-600 sm:px-3"
         >
           Submit
         </button>
         <button
           onClick={onCancel}
           type="button"
-          className="cursor-pointer ml-2 px-4 py-2 text-[14px] font-medium hover:bg-gray-300 hover:text-gray-600 border border-gray-300 rounded-md"
+          className="cursor-pointer rounded-md border border-gray-300 px-4 py-2 text-[14px] font-medium hover:bg-gray-300 hover:text-gray-600 sm:px-3"
         >
           Cancel
         </button>
@@ -132,10 +132,10 @@ export function TakeNoteInput({setRefreshTrigger}) {
   };
 
   return (
-    <div className="flex w-full flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-6 px-3 py-4 sm:px-6 lg:px-8">
       
-      <div className="mx-auto w-full max-w-[620px]">
-        <div className="relative rounded-lg border border-gray-200 bg-white shadow-[0_1px_4px_rgba(60,64,67,0.15)]">
+      <div className="mx-auto w-full max-w-[720px]">
+        <div className="relative rounded-xl border border-gray-200 bg-white shadow-[0_1px_4px_rgba(60,64,67,0.15)]">
           
           <NoteFields 
             title={title}

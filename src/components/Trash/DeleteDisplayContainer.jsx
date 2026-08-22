@@ -1,10 +1,9 @@
-import { fetchWithAuth } from "../../shared/auth/auth";
-import { useEffect, React, useState } from "react";
+import { fetchWithAuth, clearTokens } from "../../shared/auth/auth";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";
 import { PermanentDelete } from "./PermanentDelete";
 import { handleDeleted } from "../../components/Home/handleFunction";
-import { clearTokens } from "../../shared/auth/auth";
 import { RestoredNotesCard } from "./RestoredNotesCard";
 
 function DeleteDisplayContainer() {
@@ -53,19 +52,19 @@ function DeleteDisplayContainer() {
   }, []);
 
   return (
-    <div className="p-4 flex flex-col gap-4" >
+    <div className="flex flex-col gap-4 px-3 py-3 sm:px-4 sm:py-4" >
       {notes.length > 0 ? (
         notes.map((note, index) => {
           return (
             <div
               key={note.id || index}
-              className="p-4 rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 min-h-40"
+              className="min-h-40 rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md"
             >
-              <div className="flex items-start justify-between gap-3">
-                <h2 className="text-lg font-bold text-gray-800">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <h2 className="text-lg font-bold text-gray-800 break-words">
                   {note.title}
                 </h2>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <RestoredNotesCard
                     note={note}
                     onRestore={(restoredNote) =>
@@ -89,11 +88,11 @@ function DeleteDisplayContainer() {
           );
         })
       ) : (
-        <div className="flex flex-col items-center justify-center h-screen">
-          <Trash2 className="mt-[-240px] h-10 w-10 text-yellow-600 mb-[20px]" />
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Trash</h1>
-            <p className="text-lg text-gray-600">This is the Trash page.</p>
+        <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-10 text-center sm:min-h-[70vh]">
+          <Trash2 className="mb-5 h-10 w-10 text-yellow-600" />
+          <div>
+            <h1 className="mb-4 text-3xl font-bold sm:text-4xl">Trash</h1>
+            <p className="text-base text-gray-600 sm:text-lg">This is the Trash page.</p>
           </div>
         </div>
       )}

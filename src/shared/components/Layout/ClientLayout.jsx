@@ -7,7 +7,7 @@ const ClientLayout = () => {
     <div className="min-h-screen bg-white text-gray-900">
         <Header />
         <Sidebar />
-        <main className="pt-16 pl-20">
+        <main className="pb-16 pt-16 md:pl-20 md:pb-0">
           <Outlet />
         </main>
     </div>

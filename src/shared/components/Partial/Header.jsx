@@ -27,37 +27,37 @@ function Header() {
 
   return (
     <>
-      <header className="fixed left-0 top-0 z-50 flex h-16 w-full items-center justify-between border-b border-gray-200 bg-white px-4 py-3 shadow-sm">
+      <header className="fixed left-0 top-0 z-50 flex h-16 w-full items-center justify-between gap-3 border-b border-gray-200 bg-white px-3 py-3 shadow-sm sm:px-4">
         {/* Left: Menu & Logo */}
-        <div className="flex min-w-fit items-center gap-4">
-          <Menu className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
-          <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
-            <img src={noteLogo} alt="Logo" className="w-18 h-18 cursor-pointer" />
-            <h1 className="font-poppins text-2xl  text-gray-800 cursor-pointer ml-[-18px]">ota</h1>
+        <div className="flex min-w-fit items-center gap-2 sm:gap-4">
+          <Menu className="h-10 w-10 cursor-pointer rounded-full p-2 text-gray-600 hover:bg-gray-100 sm:h-12 sm:w-12 sm:p-3" />
+          <div className="flex cursor-pointer items-center" onClick={() => navigate("/")}>
+            <img src={noteLogo} alt="Logo" className="h-10 w-10 cursor-pointer sm:h-14 sm:w-14" />
+            <h1 className="-ml-2 cursor-pointer font-poppins text-xl text-gray-800 sm:-ml-4 sm:text-2xl">ota</h1>
           </div>
         </div>
 
         {/* Center: Search Bar */}
-        <div className="mx-8 flex max-w-2xl flex-1 items-center rounded-lg bg-gray-100 px-4 py-2">
+        <div className="mx-2 hidden flex-1 items-center rounded-lg bg-gray-100 px-4 py-2 md:flex lg:mx-8">
           <Search className="w-5 h-5 text-gray-500" />
           <input
             type="text"
             placeholder="Search"
-            className="bg-gray-100 ml-3 flex-1 outline-none text-gray-700 placeholder-gray-500"
+            className="ml-3 flex-1 bg-gray-100 text-gray-700 outline-none placeholder-gray-500"
           />
         </div>
 
         {/* Right: Icons & Profile */}
-        <div className="flex items-center gap-2">
-          <RotateCcw className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" onClick={refresh} />
-          <Table className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
-          <Settings className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
-          <Component className="h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100" />
+        <div className="flex items-center gap-1 sm:gap-2">
+          <RotateCcw className="h-10 w-10 cursor-pointer rounded-full p-2 text-gray-600 hover:bg-gray-100 sm:h-12 sm:w-12 sm:p-3" onClick={refresh} />
+          <Table className="hidden h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100 sm:block" />
+          <Settings className="hidden h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100 md:block" />
+          <Component className="hidden h-12 w-12 cursor-pointer rounded-full p-3 text-gray-600 hover:bg-gray-100 md:block" />
        
           <button
             type="button"
             onClick={handleLogout}
-            className="flex h-12 w-12 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900 sm:h-12 sm:w-12"
             aria-label="Logout"
           >
             <LogOut className="h-5 w-5" />

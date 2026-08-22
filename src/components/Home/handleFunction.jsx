@@ -30,9 +30,10 @@ export function EditButton({
       onClick={() =>
         handleEdit({ setEditingId, setDraftTitle, setDraftContent, note })
       }
-      className="cursor-pointer rounded-md border border-gray-200 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100"
+      className="cursor-pointer rounded-md border border-gray-200 px-2 py-0 text-xs font-medium text-gray-600 hover:bg-gray-100"
     >
-      <SquarePen />
+      <SquarePen 
+      className="md:h-4 w-4" />
     </button>
   );
 }

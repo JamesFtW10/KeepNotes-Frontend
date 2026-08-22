@@ -2,8 +2,8 @@ import { ArchiveDisplayContainer } from "../components/Archive/ArchiveDisplayCon
 
 function Archive() {
   return (
-    <div className="mx-auto w-full max-w-[620px]">
-    <ArchiveDisplayContainer/>
+    <div className="mx-auto w-full max-w-[720px] px-3 py-4 sm:px-4 sm:py-6">
+      <ArchiveDisplayContainer />
     </div>
   );
 }

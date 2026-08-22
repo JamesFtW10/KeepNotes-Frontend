@@ -49,7 +49,7 @@ export function AddNotesContainer({ refreshTrigger = 0 }) {
   }, [refreshTrigger, navigate]);
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="flex flex-col gap-4 px-0 py-2 sm:px-2 sm:py-4">
       {notes.length > 0 ? (
         notes.map((note, index) => {
           const isEditing = editingId === note.id;
